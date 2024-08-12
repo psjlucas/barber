@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.18.0",
+    "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "add": "^2.0.6",
     "button": "^1.1.1",
