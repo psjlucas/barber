@@ -8,6 +8,7 @@ import { Badge } from "./_components/ui/badge"
 import { Avatar, AvatarImage } from "./_components/ui/avatar"
 import { db } from "./_lib/prisma"
 import BarbershopItem from "./_components/barbershop-item"
+import { quickSearchOptions } from "./_constants/search"
 
 export default async function Home() {
   const barbershops = await db.barbershop.findMany({})
@@ -30,31 +31,17 @@ export default async function Home() {
         </div>
 
         <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
-          <Button className="gap-2" variant="secondary">
-            <Image alt="cabelo" src="/cabelo.svg" width={16} height={16} />
-            Cabelo
-          </Button>
-          <Button className="gap-2" variant="secondary">
-            <Image alt="barba" src="/barba.svg" width={16} height={16} />
-            Barba
-          </Button>
-          <Button className="gap-2" variant="secondary">
-            <Image
-              alt="acabamento"
-              src="/acabamento.svg"
-              width={16}
-              height={16}
-            />
-            Acabamento
-          </Button>{" "}
-          <Button className="gap-2" variant="secondary">
-            <FootprintsIcon size={16} />
-            Pezinho
-          </Button>
-          <Button className="gap-2" variant="secondary">
-            <EyeIcon size={16} />
-            Sobrancelha
-          </Button>
+          {quickSearchOptions.map((option) => (
+            <Button className="gap-2" variant="secondary" key={option.title}>
+              <Image
+                alt={option.title}
+                src={option.imageUrl}
+                width={16}
+                height={16}
+              />
+              {option.title}
+            </Button>
+          ))}
         </div>
 
         <div className="relative mt-6 h-[150px] w-full">
